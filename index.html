@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharlee | Portfólio</title>
+    <style>
+        /* Variáveis de Cores e Estilo Minimalista */
+        :root {
+            --bg-color: #0b0c10;
+            --text-color: #e0e0e0;
+            --muted-color: #888888;
+            --accent-color: #66fcf1;
+            --accent-hover: #45a29e;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2rem 4rem;
+        }
+
+        /* Cabeçalho / Navegação */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--muted-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        .lang-switch {
+            font-size: 0.85rem;
+            color: var(--muted-color);
+        }
+
+        /* Seção Principal (Hero) */
+        main {
+            max-width: 900px;
+            margin: auto 0;
+            padding: 4rem 0;
+        }
+
+        .greeting {
+            color: var(--muted-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .name-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .name-title span {
+            color: var(--accent-color);
+        }
+
+        .bio {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--muted-color);
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+        }
+
+        .bio strong {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        /* Botões de Ação */
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Rodapé com Mídias Sociais */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: var(--muted-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--muted-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <a href="#" class="logo">Sharlee</a>
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="active">Início</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <span class="lang-switch">PT-BR</span>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <p class="greeting">Olá, eu sou o</p>
+        <h1 class="name-title">Charles Bruyerre<br>Mas pode me chamar de <span>Sharlee</span>.</h1>
+        <p class="bio">
+            Sou <strong>Designer Gráfico</strong>, <strong>UX/UI Designer</strong> & <strong>Desenvolvedor Web Front-End</strong>.
+        </p>
+        <div class="cta-buttons">
+            <a href="#projetos" class="btn">→ Ver meus projetos</a>
+            <a href="#sobre" class="btn">→ Mais sobre mim</a>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Projetado e codificado por Sharlee © 2026</p>
+        <div class="social-links">
+            <a href="https://instagram.com" target="_blank">↗ Instagram</a>
+            <a href="https://behance.net" target="_blank">↗ Behance</a>
+            <a href="https://github.com" target="_blank">↗ GitHub</a>
+        </div>
+    </footer>
+
+</body>
+</html>
