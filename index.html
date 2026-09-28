@@ -5,21 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tayane | Portfólio</title>
     <style>
-        /* Variáveis de Cores e Estilo Minimalista */
         :root {
             --bg-color: #0b0c10;
             --text-color: #e0e0e0;
             --muted-color: #888888;
             --accent-color: #66fcf1;
-            --accent-hover: #45a29e;
             --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg-color);
@@ -32,7 +26,6 @@
             padding: 2rem 4rem;
         }
 
-        /* Cabeçalho / Navegação */
         header {
             display: flex;
             justify-content: space-between;
@@ -48,11 +41,7 @@
             text-decoration: none;
         }
 
-        nav ul {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+        nav ul { display: flex; gap: 2rem; list-style: none; }
 
         nav a {
             color: var(--muted-color);
@@ -61,27 +50,17 @@
             transition: color 0.3s ease;
         }
 
-        nav a:hover, nav a.active {
-            color: var(--accent-color);
-        }
+        nav a:hover, nav a.active { color: var(--accent-color); }
 
-        .lang-switch {
-            font-size: 0.85rem;
-            color: var(--muted-color);
-        }
+        .lang-switch { font-size: 0.85rem; color: var(--muted-color); }
 
-        /* Seção Principal (Hero) */
-        main {
-            max-width: 900px;
-            margin: auto 0;
-            padding: 4rem 0;
-        }
+        main { max-width: 900px; margin: auto 0; padding: 4rem 0; }
 
-        .greeting {
-            color: var(--muted-color);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
+        /* Cada "página" fica escondida até ser aberta */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        .greeting { color: var(--muted-color); font-size: 1.2rem; margin-bottom: 0.5rem; }
 
         .name-title {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -90,30 +69,19 @@
             margin-bottom: 1.5rem;
         }
 
-        .name-title span {
-            color: var(--accent-color);
-        }
+        .name-title span { color: var(--accent-color); }
 
         .bio {
             font-size: clamp(1.2rem, 2.5vw, 1.8rem);
             color: var(--muted-color);
-            font-weight: 400;
             line-height: 1.4;
             max-width: 700px;
             margin-bottom: 2.5rem;
         }
 
-        .bio strong {
-            color: var(--text-color);
-            font-weight: 500;
-        }
+        .bio strong, .text strong { color: var(--text-color); font-weight: 500; }
 
-        /* Botões de Ação */
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
+        .cta-buttons { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 
         .btn {
             display: inline-flex;
@@ -130,13 +98,55 @@
             background: rgba(255, 255, 255, 0.02);
         }
 
-        .btn:hover {
+        .btn:hover, .btn:focus-visible {
             border-color: var(--accent-color);
             color: var(--accent-color);
             transform: translateY(-2px);
         }
 
-        /* Rodapé com Mídias Sociais */
+        .page-title {
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .text p {
+            color: var(--muted-color);
+            font-size: 1.15rem;
+            line-height: 1.7;
+            max-width: 680px;
+            margin-bottom: 1.25rem;
+        }
+
+        .skills { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+
+        .skills span {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 0.4rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            transition: border-color 0.3s ease;
+        }
+
+        .project-card:hover { border-color: var(--accent-color); }
+        .project-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .project-card p { color: var(--muted-color); line-height: 1.5; margin-bottom: 1rem; }
+        .tags { font-size: 0.85rem; color: var(--accent-color); }
+
         footer {
             display: flex;
             justify-content: space-between;
@@ -148,49 +158,29 @@
             color: var(--muted-color);
         }
 
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
+        .social-links { display: flex; gap: 1.5rem; }
+        .social-links a { color: var(--muted-color); text-decoration: none; transition: color 0.3s ease; }
+        .social-links a:hover { color: var(--accent-color); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .btn, .project-card { transition: none; }
         }
 
-        .social-links a {
-            color: var(--muted-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Responsividade para telas menores */
         @media (max-width: 768px) {
-            body {
-                padding: 1.5rem;
-            }
-
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
+            body { padding: 1.5rem; }
+            header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            nav ul { gap: 1.25rem; flex-wrap: wrap; }
+            footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Cabeçalho -->
     <header>
-        <a href="#" class="logo">Tayane Kelly</a>
+        <a href="#inicio" class="logo">Tayane Kelly</a>
         <nav>
             <ul>
-                <li><a href="#inicio" class="active">Início</a></li>
+                <li><a href="#inicio">Início</a></li>
                 <li><a href="#projetos">Projetos</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#contato">Contato</a></li>
@@ -199,28 +189,96 @@
         <span class="lang-switch">PT-BR</span>
     </header>
 
-    <!-- Conteúdo Principal -->
     <main>
-        <p class="greeting">Olá, eu sou a</p>
-        <h1 class="name-title">Tayane Kelly<br>Mas pode me chamar de <span>Tay</span>.</h1>
-        <p class="bio">
-            Sou <strong>Designer</strong>, <strong>UX/UI Designer</strong> & <strong>Desenvolvedora Web Front-End</strong>.
-        </p>
-        <div class="cta-buttons">
-            <a href="#projetos" class="btn">→ Ver meus projetos</a>
-            <a href="#sobre" class="btn">→ Mais sobre mim</a>
-        </div>
+        <!-- Página: Início -->
+        <section id="inicio" class="page">
+            <p class="greeting">Olá, eu sou a</p>
+            <h1 class="name-title">Tayane Kelly<br>Mas pode me chamar de <span>Tay</span>.</h1>
+            <p class="bio">
+                Sou <strong>Designer</strong>, <strong>UX/UI Designer</strong> & <strong>Desenvolvedora Web Front-End</strong>.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projetos" class="btn">→ Ver meus projetos</a>
+                <a href="#sobre" class="btn">→ Mais sobre mim</a>
+            </div>
+        </section>
+
+        <!-- Página: Projetos -->
+        <section id="projetos" class="page">
+            <h1 class="page-title">Projetos</h1>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <h3>Joguinho: Conquistando meu coração</h3>
+                    <p>O joguinho conquistando meu coração, foi feito para os casais apaixonados enviar para sua/seu amada(o). Aqui está o resultado: <p>Você pode ver meu trabalho no <a href="https://tayanekelly.github.io/jogo/index.html" target="_blank" rel="noopener" style="color: var(--accent-color);">GitHub</a>.</p>.</p>
+                    <span class="tags">UX/UI · Front-End</span>
+                </article>
+                <article class="project-card">
+                    <h3>Pedido: "Quer casar comigo?"</h3>
+                    <p>O pedido "quer casar comigo?", foi feito para os casais apaixonados enviar para sua/seu amada(o). Aqui está o resultado: <p>Você pode ver meu trabalho no <a href="https://tayanekelly.github.io/index.html/" target="_blank" rel="noopener" style="color: var(--accent-color);">GitHub</a>.</p>.</p>
+                    <span class="tags">Design · Identidade visual</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Página: Sobre -->
+        <section id="sobre" class="page">
+            <h1 class="page-title">Sobre mim</h1>
+            <div class="text">
+                <p>
+                    Oi, eu sou a <strong>Tayane</strong>, mas todo mundo me chama de <strong>Tay</strong>.
+                    Trabalho com <strong>design</strong> e <strong>desenvolvimento web front-end</strong>,
+                    e gosto de cuidar do caminho inteiro: da ideia no papel até a página funcionando no navegador.
+                </p>
+                <p>
+                    Como <strong>UX/UI Designer</strong>, penso em como as pessoas vão usar cada tela.
+                    Busco interfaces claras, bonitas e fáceis de entender. Como desenvolvedora, transformo esses
+                    layouts em código limpo e responsivo, que funciona bem em qualquer dispositivo.
+                </p>
+                <p>
+                    Ser designer e desenvolvedora ao mesmo tempo me ajuda a criar projetos que ficam
+                    bonitos no design e continuam fiéis a ele depois de prontos.
+                </p>
+                <div class="skills">
+                    <span>Design</span>
+                    <span>UX/UI</span>
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página: Contato -->
+        <section id="contato" class="page">
+            <h1 class="page-title">Contato</h1>
+            <div class="text">
+                <p>Quer conversar sobre um projeto ou só trocar ideias? Me chama por uma das redes abaixo.</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="https://www.linkedin.com/in/tayanekelly" target="_blank" rel="noopener" class="btn">→ LinkedIn</a>
+                <a href="https://www.instagram.com/tayaneks" target="_blank" rel="noopener" class="btn">→ Instagram</a>
+                <a href="https://github.com/tayanekelly" target="_blank" rel="noopener" class="btn">→ GitHub</a>
+            </div>
+        </section>
     </main>
 
-    <!-- Rodapé -->
     <footer>
         <p>Projetado e codificado por Tayane © 2026</p>
         <div class="social-links">
-            <a href="https://www.instagram.com/tayaneks?stkn=MTRwY3JsYWxnZnQ2MA==" target="_blank">↗ Instagram</a>
-            <a href="https://www.linkedin.com/in/tayanekelly?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">↗ LinkedIn</a>
-            <a href="https://github.com/tayanekelly" target="_blank">↗ GitHub</a>
+            <a href="https://www.instagram.com/tayaneks?stkn=MTRwY3JsYWxnZnQ2MA==" target="_blank" rel="noopener">↗ Instagram</a>
+            <a href="https://www.linkedin.com/in/tayanekelly?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener">↗ LinkedIn</a>
+            <a href="https://github.com/tayanekelly" target="_blank" rel="noopener">↗ GitHub</a>
         </div>
     </footer>
 
-</body>
-</html>
+    <script>
+        const pages = document.querySelectorAll('.page');
+        const links = document.querySelectorAll('nav a');
+        const validIds = Array.from(pages).map((p) => p.id);
+
+        function showPage() {
+            let id = location.hash.replace('#', '');
+            if (!validIds.includes(id)) id = 'inicio';
+
+            pages.forEach((p) => p.classList.toggle('active', p.id === id));
+            links.forEach((l) => l.classList.toggle('active',
