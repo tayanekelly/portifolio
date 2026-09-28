@@ -191,7 +191,7 @@
 
     <main>
         <!-- Página: Início -->
-        <section id="inicio" class="page">
+        <section id="inicio" class="page active">
             <p class="greeting">Olá, eu sou a</p>
             <h1 class="name-title">Tayane Kelly<br>Mas pode me chamar de <span>Tay</span>.</h1>
             <p class="bio">
@@ -271,7 +271,7 @@
         </div>
     </footer>
 
-    <script>
+       <script>
         const pages = document.querySelectorAll('.page');
         const links = document.querySelectorAll('nav a');
         const validIds = Array.from(pages).map((p) => p.id);
@@ -281,4 +281,13 @@
             if (!validIds.includes(id)) id = 'inicio';
 
             pages.forEach((p) => p.classList.toggle('active', p.id === id));
-            links.forEach((l) => l.classList.toggle('active',
+            links.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+            window.scrollTo(0, 0);
+        }
+
+        window.addEventListener('hashchange', showPage);
+        showPage();
+    </script>
+
+</body>
+</html>
