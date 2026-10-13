@@ -1,3 +1,19 @@
+Para deixar o site com um tom **mais feminino, elegante e profissional**, mantendo o estilo moderno e escuro, uma excelente escolha é substituir o tom ciano/neon por uma paleta **Rose Gold / Rosa Quartzo** em fundo escuro em tom café/grafite suave (*Dark Mocha / Plum*).
+
+### A Nova Paleta de Cores:
+
+* **Fundo (`--bg-color`):** `#141216` — Um tom preto/grafite com um toque bem sutil de ameixa escura, mais aconchegante e elegante.
+* **Cor de Destaque (`--accent-color`):** `#f4b3ce` — Um rosa suave / rose gold refinado, profissional e delicado.
+* **Destaque Secundário / Hover (`--accent-hover`):** `#e090b3` — Um tom rosa queimado um pouco mais marcante para interações ao passar o mouse.
+* **Sombra e Brilho (`--card-glow`):** Um leve brilho rosado translúcido nas bordas dos cards e botões ao passar o mouse.
+
+---
+
+### Código Completo Atualizado
+
+Aqui está o seu arquivo **HTML/CSS/JS** completo com a nova paleta e os detalhes ajustados:
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,10 +22,14 @@
     <title>Tayane | Portfólio</title>
     <style>
         :root {
-            --bg-color: #0b0c10;
-            --text-color: #e0e0e0;
-            --muted-color: #888888;
-            --accent-color: #66fcf1;
+            /* Paleta Feminina & Profissional (Rose Gold / Dark Elegance) */
+            --bg-color: #141216;
+            --text-color: #f2edf3;
+            --muted-color: #a39ca8;
+            --accent-color: #f4b3ce;
+            --accent-hover: #e090b3;
+            --card-bg: rgba(255, 255, 255, 0.025);
+            --card-border: rgba(244, 179, 206, 0.12);
             --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
@@ -39,6 +59,11 @@
             letter-spacing: 1px;
             color: var(--text-color);
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
         }
 
         nav ul { display: flex; gap: 2rem; list-style: none; }
@@ -56,7 +81,7 @@
 
         main { max-width: 900px; margin: auto 0; padding: 4rem 0; }
 
-        /* Cada "página" fica escondida até ser aberta */
+        /* Páginas ativas */
         .page { display: none; }
         .page.active { display: block; }
 
@@ -91,16 +116,17 @@
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
             padding: 0.8rem 1.5rem;
             border-radius: 30px;
             transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--card-bg);
         }
 
         .btn:hover, .btn:focus-visible {
             border-color: var(--accent-color);
             color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(244, 179, 206, 0.15);
             transform: translateY(-2px);
         }
 
@@ -119,13 +145,21 @@
             margin-bottom: 1.25rem;
         }
 
-        .skills { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+        .skills { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
 
         .skills span {
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-color);
             border-radius: 30px;
-            padding: 0.4rem 1rem;
+            padding: 0.4rem 1.1rem;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skills span:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
         }
 
         .projects-grid {
@@ -135,17 +169,22 @@
         }
 
         .project-card {
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.02);
-            transition: border-color 0.3s ease;
+            background: var(--card-bg);
+            transition: all 0.3s ease;
         }
 
-        .project-card:hover { border-color: var(--accent-color); }
+        .project-card:hover { 
+            border-color: var(--accent-color); 
+            box-shadow: 0 4px 20px rgba(244, 179, 206, 0.08);
+            transform: translateY(-3px);
+        }
+
         .project-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
-        .project-card p { color: var(--muted-color); line-height: 1.5; margin-bottom: 1rem; }
-        .tags { font-size: 0.85rem; color: var(--accent-color); }
+        .project-card p { color: var(--muted-color); line-height: 1.5; margin-bottom: 0.75rem; }
+        .tags { font-size: 0.85rem; color: var(--accent-color); display: block; margin-top: 0.5rem; font-weight: 500; }
 
         footer {
             display: flex;
@@ -163,7 +202,7 @@
         .social-links a:hover { color: var(--accent-color); }
 
         @media (prefers-reduced-motion: reduce) {
-            .btn, .project-card { transition: none; }
+            .btn, .project-card, .skills span { transition: none; }
         }
 
         @media (max-width: 768px) {
@@ -209,12 +248,22 @@
             <div class="projects-grid">
                 <article class="project-card">
                     <h3>Joguinho: Conquistando meu coração</h3>
-                    <p>O joguinho conquistando meu coração, foi feito para os casais apaixonados enviar para sua/seu amada(o). Aqui está o resultado: <p>Você pode ver meu trabalho no <a href="https://tayanekelly.github.io/jogo/index.html" target="_blank" rel="noopener" style="color: var(--accent-color);">GitHub</a>.</p>.</p>
+                    <p>O joguinho "Conquistando meu coração" foi feito para casais apaixonados enviarem para a pessoa amada.</p>
+                    <p>Você pode ver meu trabalho no <a href="https://tayanekelly.github.io/jogo/index.html" target="_blank" rel="noopener" style="color: var(--accent-color);">GitHub</a>.</p>
                     <span class="tags">UX/UI · Front-End</span>
                 </article>
+
                 <article class="project-card">
                     <h3>Pedido: "Quer casar comigo?"</h3>
-                    <p>O pedido "quer casar comigo?", foi feito para os casais apaixonados enviar para sua/seu amada(o). Aqui está o resultado: <p>Você pode ver meu trabalho no <a href="https://tayanekelly.github.io/index.html/" target="_blank" rel="noopener" style="color: var(--accent-color);">GitHub</a>.</p>.</p>
+                    <p>O pedido "Quer casar comigo?" foi desenvolvido para momentos especiais a dois.</p>
+                    <p>Você pode ver meu trabalho no <a href="https://tayanekelly.github.io/index.html" target="_blank" rel="noopener" style="color: var(--accent-color);">GitHub</a>.</p>
+                    <span class="tags">Design · Identidade visual</span>
+                </article>
+
+                <article class="project-card">
+                    <h3>Jogo: Cuidando Dela</h3>
+                    <p>Um jogo interativo que conta a história de uma pessoa que precisa de cuidados após um acidente.</p>
+                    <p>Você pode ver meu trabalho no <a href="https://tayanekelly.github.io/gamer2/" target="_blank" rel="noopener" style="color: var(--accent-color);">GitHub</a>.</p>
                     <span class="tags">Design · Identidade visual</span>
                 </article>
             </div>
@@ -265,15 +314,15 @@
     <footer>
         <p>Projetado e codificado por Tayane © 2026</p>
         <div class="social-links">
-            <a href="https://www.instagram.com/tayaneks?stkn=MTRwY3JsYWxnZnQ2MA==" target="_blank" rel="noopener">↗ Instagram</a>
-            <a href="https://www.linkedin.com/in/tayanekelly?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener">↗ LinkedIn</a>
+            <a href="https://www.instagram.com/tayaneks" target="_blank" rel="noopener">↗ Instagram</a>
+            <a href="https://www.linkedin.com/in/tayanekelly" target="_blank" rel="noopener">↗ LinkedIn</a>
             <a href="https://github.com/tayanekelly" target="_blank" rel="noopener">↗ GitHub</a>
         </div>
     </footer>
 
-       <script>
+    <script>
         const pages = document.querySelectorAll('.page');
-        const links = document.querySelectorAll('nav a');
+        const navLinks = document.querySelectorAll('nav a, header .logo');
         const validIds = Array.from(pages).map((p) => p.id);
 
         function showPage() {
@@ -281,7 +330,11 @@
             if (!validIds.includes(id)) id = 'inicio';
 
             pages.forEach((p) => p.classList.toggle('active', p.id === id));
-            links.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+            navLinks.forEach((l) => {
+                if (l.getAttribute('href')) {
+                    l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+                }
+            });
             window.scrollTo(0, 0);
         }
 
@@ -291,3 +344,5 @@
 
 </body>
 </html>
+
+```
